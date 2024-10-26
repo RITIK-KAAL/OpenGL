@@ -1,0 +1,19 @@
+﻿  OpenGLSource.cpp
+D:\OpenGL\OpenGl\Source\deps\linmath.h(603,51): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\OpenGL\OpenGl\Source\deps\linmath.h(603,20): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwSwapBuffers
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwSwapInterval
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwGetTime
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwGetFramebufferSize
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwTerminate
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwPollEvents
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwInit
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwSetKeyCallback
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwSetWindowShouldClose
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwCreateWindow
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwWindowHint
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwMakeContextCurrent
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwDestroyWindow
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwSetErrorCallback
+OpenGLSource.obj : error LNK2001: unresolved external symbol _glfwWindowShouldClose
+D:\OpenGL\OpenGl\Release\OpenGl.exe : fatal error LNK1120: 15 unresolved externals

@@ -1,0 +1,4 @@
+﻿  Application.cpp
+D:\OpenGL\OpenGl\Source\deps\linmath.h(603,51): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\OpenGL\OpenGl\Source\deps\linmath.h(603,20): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+  OpenGl.vcxproj -> D:\OpenGL\OpenGl\x64\Debug\OpenGl.exe
