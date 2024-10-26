@@ -1,6 +1,8 @@
 D:\OpenGL\Source\Application.cpp;D:\OpenGL\OpenGl\x64\Debug\Application.obj
+D:\OpenGL\Source\External\Stb_Image.cpp;D:\OpenGL\OpenGl\x64\Debug\Stb_Image.obj
 D:\OpenGL\Source\IndexBuffer.cpp;D:\OpenGL\OpenGl\x64\Debug\IndexBuffer.obj
 D:\OpenGL\Source\Renderer.cpp;D:\OpenGL\OpenGl\x64\Debug\Renderer.obj
 D:\OpenGL\Source\Shader.cpp;D:\OpenGL\OpenGl\x64\Debug\Shader.obj
+D:\OpenGL\Source\Texture.cpp;D:\OpenGL\OpenGl\x64\Debug\Texture.obj
 D:\OpenGL\Source\VertexArray.cpp;D:\OpenGL\OpenGl\x64\Debug\VertexArray.obj
 D:\OpenGL\Source\VertexBuffer.cpp;D:\OpenGL\OpenGl\x64\Debug\VertexBuffer.obj
