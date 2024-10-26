@@ -1,6 +1,6 @@
 #pragma once
 
-#include <D:/OpenGL/OpenGl/Dependencies/include/GLFW/glfw3.h>
+#include <D:/OpenGL/Dependencies/include/GLFW/glfw3.h>
 #include<vector>
 
 struct BufferHolder

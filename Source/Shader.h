@@ -1,4 +1,4 @@
-#include <D:/OpenGL/OpenGl/Dependencies/include/GLFW/glfw3.h>
+#include <D:/OpenGL/Dependencies/include/GLFW/glfw3.h>
 #include <string>
 #include <iostream>
 

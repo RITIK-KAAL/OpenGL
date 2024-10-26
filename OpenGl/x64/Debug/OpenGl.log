@@ -1,0 +1,8 @@
+﻿  Renderer.cpp
+  Shader.cpp
+  VertexArray.cpp
+D:\OpenGL\Source\VertexArray.cpp(26,93): warning C4312: 'type cast': conversion from 'unsigned int' to 'const void *' of greater size
+  VertexBuffer.cpp
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  OpenGl.vcxproj -> D:\OpenGL\x64\Debug\OpenGl.exe

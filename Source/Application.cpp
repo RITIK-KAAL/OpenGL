@@ -1,9 +1,9 @@
 #define GLAD_GL_IMPLEMENTATION
-#include <D:/OpenGL/OpenGl/Source/deps/glad/gl.h>
+#include <D:/OpenGL/Source/deps/glad/gl.h>
 #define GLFW_INCLUDE_NONE
-#include <D:/OpenGL/OpenGl/Dependencies/include/GLFW/glfw3.h>
+#include <D:/OpenGL/Dependencies/include/GLFW/glfw3.h>
 
-#include "D:/OpenGL/OpenGl/Source/deps/linmath.h"
+#include "D:/OpenGL/Source/deps/linmath.h"
 #include "VertexBuffer.h"
 #include "VertexArray.h"
 #include "VertexBufferLayout.h"

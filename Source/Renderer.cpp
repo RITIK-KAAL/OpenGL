@@ -1,6 +1,6 @@
 #include "Renderer.h"
-#include <D:/OpenGL/OpenGl/Source/deps/glad/gl.h>
-#include <D:/OpenGL/OpenGl/Dependencies/include/GLFW/glfw3.h>
+#include <D:/OpenGL/Source/deps/glad/gl.h>
+#include <D:/OpenGL/Dependencies/include/GLFW/glfw3.h>
 
 Renderer::Renderer(const unsigned int Mode, const unsigned int Count, const unsigned int Type, const void* Indices)
 {
