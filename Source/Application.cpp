@@ -10,6 +10,7 @@
 #include "IndexBuffer.h"
 #include "Shader.h"
 #include "Renderer.h"
+#include "Texture.h"
 
 #include <stdlib.h>
 #include <stddef.h>
