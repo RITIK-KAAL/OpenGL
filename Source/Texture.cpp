@@ -31,7 +31,7 @@ Texture::~Texture()
 	glDeleteTextures(1, &m_Renderer);
 }
 
-void Texture::Bind(const unsigned int Coord) const
+void Texture::Bind(unsigned int Coord) const
 {
 	glActiveTexture(GL_TEXTURE0 + Coord);
 	glBindTexture(GL_TEXTURE_2D, m_Renderer);

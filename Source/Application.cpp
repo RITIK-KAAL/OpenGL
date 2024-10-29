@@ -50,7 +50,7 @@ const char* fragment_shader_text =
 "void main()\n"
 "{\n"
 "    vec4 Color = texture(u_Texture, TexCoord);\n"
-"    fragment = u_Color;\n"
+"    fragment = Color;\n"
 "}\n";
 
 static void error_callback(int error, const char* description)
@@ -88,7 +88,7 @@ int main(void)
 	gladLoadGL(glfwGetProcAddress);
 	glfwSwapInterval(1);
 
-	VertexBuffer VB(vertices,sizeof(float) * 8 * 2);
+	VertexBuffer VB(vertices,sizeof(float) * 4 * 4);
 
 	IndexBuffer IB(Indices, 6);
 
@@ -101,6 +101,8 @@ int main(void)
 	VertexArray VA;
 
 	Texture m_Texture("D:/OpenGL/Source/Textures/Ritik_DP.png");
+
+	m_Texture.Bind(0);
 
 	m_Shader.SetUniform1i("u_Texture", 0);
 

@@ -16,7 +16,7 @@ public:
 	Texture(const char* TextureLocation); 
 	~Texture();
 
-	void Bind(const unsigned int Coord) const;
+	void Bind(unsigned int Coord) const;
 	void UnBind() const;
 
 	inline const unsigned int GetWidth() const { return m_Width; }
