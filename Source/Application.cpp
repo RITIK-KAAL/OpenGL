@@ -18,10 +18,10 @@
 
 static const float vertices[] =
 {
-	-0.5f, -0.5f, 
-	0.5f, -0.5f,
-	0.5f, 0.5f,
-	-0.5f, 0.5f,
+	-0.5f, -0.5f, 0.0f, 0.0f,
+	0.5f, -0.5f, 1.0f, 0.0f, 
+	0.5f, 0.5f, 1.0f, 1.0f,
+	-0.5f, 0.5f, 0.0f, 1.0f
 };
 
 static const unsigned int Indices[] =
@@ -33,17 +33,23 @@ static const unsigned int Indices[] =
 const char* vertex_shader_text =
 "#version 330\n"
 "in vec2 vPos;\n"
+"in vec2 TexPos;\n"
+"out vec2 TexCoord;\n"
 "void main()\n"
 "{\n"
 "    gl_Position = vec4(vPos, 0.0, 1.0);\n"
+"    TexCoord = TexPos;\n"
 "}\n";
 
 const char* fragment_shader_text =
 "#version 330\n"
 "out vec4 fragment;\n"
+"in vec2 TexCoord;\n"
+"uniform sampler2D u_Texture;\n"
 "uniform vec4 u_Color;"
 "void main()\n"
 "{\n"
+"    vec4 Color = texture(u_Texture, TexCoord);\n"
 "    fragment = u_Color;\n"
 "}\n";
 
@@ -82,7 +88,7 @@ int main(void)
 	gladLoadGL(glfwGetProcAddress);
 	glfwSwapInterval(1);
 
-	VertexBuffer VB(vertices,sizeof(float) * 6 * 2);
+	VertexBuffer VB(vertices,sizeof(float) * 8 * 2);
 
 	IndexBuffer IB(Indices, 6);
 
@@ -94,8 +100,13 @@ int main(void)
 
 	VertexArray VA;
 
+	Texture m_Texture("D:/OpenGL/Source/Textures/Ritik_DP.png");
+
+	m_Shader.SetUniform1i("u_Texture", 0);
+
 	VertexBufferLayout VBL;
 
+	VBL.PushData<float>(2);
 	VBL.PushData<float>(2);
 	VA.AddBuffer(VB, VBL);
 

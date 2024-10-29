@@ -19,5 +19,7 @@ public:
 
     unsigned int CompileShader(GLenum type, const char* source);
 
+    void SetUniform1i(const std::string& name, unsigned int v0);
+
     void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
 };

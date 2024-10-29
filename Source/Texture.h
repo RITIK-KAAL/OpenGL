@@ -5,7 +5,7 @@ class Texture
 private : 
 
 	unsigned int m_Renderer;
-	const char m_TextureLocation;
+	const char* m_TextureLocation;
 	unsigned char* m_BufferHolder;
 	int m_Width; 
 	int m_Height; 
@@ -13,7 +13,7 @@ private :
 
 public:
 
-	Texture(const char& TextureLocation); 
+	Texture(const char* TextureLocation); 
 	~Texture();
 
 	void Bind(const unsigned int Coord) const;

@@ -45,3 +45,9 @@ unsigned int Shader::CompileShader(GLenum type, const char* source)
 
     return shader;
 }
+
+void Shader::SetUniform1i(const std::string& name, unsigned int v0)
+{
+    GLint location = glGetUniformLocation(m_RendererId, name.c_str());
+    glUniform1f(location, v0);
+}
