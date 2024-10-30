@@ -1,5 +1,5 @@
 #include "Texture.h"
-#include <D:/OpenGL/Source/External/Stb_Image.h>
+#include <D:/OpenGL/Source/External/stb_image/Stb_Image.h>
 #include <D:/OpenGL/Source/deps/glad/gl.h>
 
 Texture::Texture(const char* TextureLocation) : m_Renderer(0), m_TextureLocation(TextureLocation), m_BufferHolder(nullptr), m_Width(0), m_Height(0), m_BPP(0)
