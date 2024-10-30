@@ -88,6 +88,9 @@ int main(void)
 	gladLoadGL(glfwGetProcAddress);
 	glfwSwapInterval(1);
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA);
+
 	VertexBuffer VB(vertices,sizeof(float) * 4 * 4);
 
 	IndexBuffer IB(Indices, 6);
@@ -100,7 +103,7 @@ int main(void)
 
 	VertexArray VA;
 
-	Texture m_Texture("D:/OpenGL/Source/Textures/Ritik_DP.png");
+	Texture m_Texture("D:/OpenGL/Source/Textures/SM_Pillar_NN_01a_lambert2_Normal.png");
 
 	m_Texture.Bind(0);
 
