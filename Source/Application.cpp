@@ -2,8 +2,10 @@
 #include <D:/OpenGL/Source/deps/glad/gl.h>
 #define GLFW_INCLUDE_NONE
 #include <D:/OpenGL/Dependencies/include/GLFW/glfw3.h>
+#include <D:/OpenGL/Source/External/glm/glm.hpp>
+#include <D:/OpenGL/Source/External/glm/gtc/matrix_transform.hpp>
 
-#include "D:/OpenGL/Source/deps/linmath.h"
+#include <D:/OpenGL/Source/deps/linmath.h>
 #include "VertexBuffer.h"
 #include "VertexArray.h"
 #include "VertexBufferLayout.h"
@@ -32,12 +34,13 @@ static const unsigned int Indices[] =
 
 const char* vertex_shader_text =
 "#version 330\n"
-"in vec2 vPos;\n"
+"in vec4 vPos;\n"
 "in vec2 TexPos;\n"
 "out vec2 TexCoord;\n"
+"uniform mat4 m_MVP;\n"
 "void main()\n"
 "{\n"
-"    gl_Position = vec4(vPos, 0.0, 1.0);\n"
+"    gl_Position = vPos * m_MVP;\n"
 "    TexCoord = TexPos;\n"
 "}\n";
 
@@ -46,7 +49,7 @@ const char* fragment_shader_text =
 "out vec4 fragment;\n"
 "in vec2 TexCoord;\n"
 "uniform sampler2D u_Texture;\n"
-"uniform vec4 u_Color;"
+"uniform vec4 u_Color;\n"
 "void main()\n"
 "{\n"
 "    vec4 Color = texture(u_Texture, TexCoord);\n"
@@ -100,6 +103,10 @@ int main(void)
 	m_Shader.Bind();
 
 	m_Shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.4f, 0.5f);
+
+	glm::mat4 MVP = glm::ortho(-1.5f, 1.5f, -1.5f, 1.5f, -1.5f, 1.5f);
+
+	m_Shader.SetUniformMat4f("m_MVP", MVP);
 
 	VertexArray VA;
 
