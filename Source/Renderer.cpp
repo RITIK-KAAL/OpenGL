@@ -4,7 +4,8 @@
 
 Renderer::Renderer(const unsigned int Mode, const unsigned int Count, const unsigned int Type, const void* Indices)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	// Clear Screen and Depth Buffer
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glDrawElements(Mode, Count, Type, Indices);
 }

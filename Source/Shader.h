@@ -16,7 +16,7 @@ public:
     ~Shader();
 
     void Bind() const;
-    void Unbind() const;
+    void UnBind() const;
 
     unsigned int CompileShader(GLenum type, const char* source);
 
