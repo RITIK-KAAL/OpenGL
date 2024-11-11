@@ -1,5 +1,5 @@
 #include "VertexBuffer.h"
-#include <D:/OpenGL/Source/deps/glad/gl.h>
+#include <Source/deps/glad/gl.h>
 
 VertexBuffer::VertexBuffer(const void* Data, unsigned int Size)
 {

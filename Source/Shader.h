@@ -1,5 +1,5 @@
-#include <D:/OpenGL/Dependencies/include/GLFW/glfw3.h>
-#include <D:/OpenGL/Source/External/glm/glm.hpp>
+#include <Dependencies/include/GLFW/glfw3.h>
+#include <Source/External/glm/glm.hpp>
 #include <string>
 #include <iostream>
 

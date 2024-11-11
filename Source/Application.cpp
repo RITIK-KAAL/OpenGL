@@ -1,10 +1,10 @@
 #define GLAD_GL_IMPLEMENTATION
 #include <D:/OpenGL/Source/deps/glad/gl.h>
 #define GLFW_INCLUDE_NONE
-#include <D:/OpenGL/Dependencies/include/GLFW/glfw3.h>
-#include <D:/OpenGL/Source/External/glm/glm.hpp>
-#include <D:/OpenGL/Source/External/glm/gtc/matrix_transform.hpp>
-#include <D:/OpenGL/Source/deps/linmath.h>
+#include <Dependencies/include/GLFW/glfw3.h>
+#include <Source/External/glm/glm.hpp>
+#include <Source/External/glm/gtc/matrix_transform.hpp>
+#include <Source/deps/linmath.h>
 
 #include "VertexBuffer.h"
 #include "VertexArray.h"
@@ -157,7 +157,7 @@ int main(void)
 	VertexArray VA;
 
 	// Texture
-	Texture m_Texture("D:/OpenGL/Source/Textures/SM_Pillar_NN_01a_lambert2_Normal.png");
+	Texture m_Texture("Source/Textures/SM_Pillar_NN_01a_lambert2_Normal.png");
 	m_Texture.Bind(0);
 
 	m_Shader.SetUniform1i("u_Texture", 0);

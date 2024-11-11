@@ -1,5 +1,5 @@
 #include "IndexBuffer.h"
-#include <D:/OpenGL/Source/deps/glad/gl.h>
+#include <Source/deps/glad/gl.h>
 
 IndexBuffer::IndexBuffer(const unsigned int* Data, unsigned int count) : m_Count(count)
 {

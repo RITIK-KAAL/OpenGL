@@ -1,5 +1,5 @@
-#include <D:/OpenGL/Source/deps/glad/gl.h>
-#include <D:/OpenGL/Dependencies/include/GLFW/glfw3.h>
+#include <Source/deps/glad/gl.h>
+#include <Dependencies/include/GLFW/glfw3.h>
 #include "Shader.h"
 
 Shader::Shader(const char* vertexSource, const char* fragmentSource) 
