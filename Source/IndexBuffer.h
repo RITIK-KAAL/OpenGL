@@ -9,7 +9,7 @@ private:
 
 public:
 
-	const IndexBuffer(const unsigned int* Data, unsigned int count);
+	IndexBuffer(const unsigned int* Data, unsigned int count);
 
 	~IndexBuffer();
 

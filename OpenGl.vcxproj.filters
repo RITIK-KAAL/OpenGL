@@ -60,6 +60,9 @@
     <ClCompile Include="Source\External\imgui\imgui_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\External\imgui\imgui_impl_glfw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\linmath.h">
@@ -977,6 +980,9 @@
     <ClInclude Include="Source\External\imgui\imstb_truetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\External\imgui\imgui_impl_glfw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Source\Textures\SM_Pillar_NN_01a_lambert2_Normal.png">
@@ -1398,5 +1404,6 @@
     <None Include="Source\External\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="Source\External\imgui\imgui.ini" />
   </ItemGroup>
 </Project>

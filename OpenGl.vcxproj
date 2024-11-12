@@ -107,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Dependencies\include\GLFW</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Dependencies\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,6 +138,7 @@
     <ClCompile Include="Source\External\imgui\imgui.cpp" />
     <ClCompile Include="Source\External\imgui\imgui_demo.cpp" />
     <ClCompile Include="Source\External\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Source\External\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="Source\External\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Source\External\imgui\imgui_tables.cpp" />
     <ClCompile Include="Source\External\imgui\imgui_widgets.cpp" />
@@ -440,6 +441,7 @@
     <ClInclude Include="Source\External\glm\vector_relational.hpp" />
     <ClInclude Include="Source\External\imgui\imconfig.h" />
     <ClInclude Include="Source\External\imgui\imgui.h" />
+    <ClInclude Include="Source\External\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="Source\External\imgui\imgui_impl_opengl3.h" />
     <ClInclude Include="Source\External\imgui\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="Source\External\imgui\imgui_internal.h" />
@@ -598,6 +600,7 @@
     <None Include="Source\External\glm\gtx\vector_angle.inl" />
     <None Include="Source\External\glm\gtx\vector_query.inl" />
     <None Include="Source\External\glm\gtx\wrap.inl" />
+    <None Include="Source\External\imgui\imgui.ini" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

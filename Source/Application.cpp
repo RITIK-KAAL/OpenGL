@@ -5,6 +5,9 @@
 #include <Source/External/glm/glm.hpp>
 #include <Source/External/glm/gtc/matrix_transform.hpp>
 #include <Source/deps/linmath.h>
+#include <Source/External/imgui/imgui.h>
+#include <Source/External/imgui/imgui_impl_glfw.h>
+#include <Source/External/imgui/imgui_impl_opengl3.h>
 
 #include "VertexBuffer.h"
 #include "VertexArray.h"
@@ -159,7 +162,6 @@ int main(void)
 	// Texture
 	Texture m_Texture("Source/Textures/SM_Pillar_NN_01a_lambert2_Normal.png");
 	m_Texture.Bind(0);
-
 	m_Shader.SetUniform1i("u_Texture", 0);
 
 	// Vertex Buffer Layout
@@ -167,6 +169,18 @@ int main(void)
 	VBL.PushData<float>(3);
 	VBL.PushData<float>(2);
 	VA.AddBuffer(VB, VBL);
+
+	// Initializing ImGui
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui::StyleColorsDark();
+
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplOpenGL3_Init((char*) glGetString(330));
+
+	bool show_demo_window = true;
+	bool show_another_window = false;
+	ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -178,8 +192,50 @@ int main(void)
 		VA.Bind();
 		IB.Bind();
 
+		// ImGui 
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
+		if (show_demo_window)
+			ImGui::ShowDemoWindow(&show_demo_window);
+		{
+			static float f = 0.0f;
+			static int counter = 0;
+
+			ImGui::Begin("Hello, world!");
+
+			ImGui::Text("This is some useful text.");
+			ImGui::Checkbox("Demo Window", &show_demo_window);
+			ImGui::Checkbox("Another Window", &show_another_window);
+
+			ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
+			ImGui::ColorEdit3("clear color", (float*)&clear_color);
+
+			if (ImGui::Button("Button"))
+				counter++;
+			ImGui::SameLine();
+			ImGui::Text("counter = %d", counter);
+
+			ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+			ImGui::End();
+		}
+
+		if (show_another_window)
+		{
+			ImGui::Begin("Another Window", &show_another_window);
+			ImGui::Text("Hello from another window!");
+			if (ImGui::Button("Close Me"))
+				show_another_window = false;
+			ImGui::End();
+		}
+
 		// Renderer
 		Renderer m_Renderer(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
+
+		// Rendering ImGui
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -191,6 +247,11 @@ int main(void)
 	VA.UnBind();
 	m_Shader.UnBind();
 	m_Texture.UnBind();
+
+	// Destroy ImGui
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 
 	// Destroy, Terminate and Exit
 	glfwDestroyWindow(window);

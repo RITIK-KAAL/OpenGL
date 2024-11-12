@@ -11,7 +11,7 @@ private:
 
 public:
 
-	const VertexArray();
+	VertexArray();
 
 	~VertexArray();
 
