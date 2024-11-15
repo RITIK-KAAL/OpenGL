@@ -151,16 +151,16 @@ int main(void)
 	glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f);
 	m_Shader.SetUniformMat4f("m_MVP", Projection);
 
-	glm::mat4 View = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
+	glm::mat4 View = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -5.0f));
 	m_Shader.SetUniformMat4f("m_MVP", Projection * View);
 
-	glm::mat4 Model = glm::mat4(1.0f);
+	glm::mat4 Model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 
 	// Vertex Array
 	VertexArray VA;
 
 	// Texture
-	Texture m_Texture("Source/Textures/SM_Pillar_NN_01a_lambert2_Normal.png");
+	Texture m_Texture("Source/Textures/TX_Wooden_Palette_NN_01a_ALB.png");
 	m_Texture.Bind(0);
 	m_Shader.SetUniform1i("u_Texture", 0);
 
@@ -182,11 +182,17 @@ int main(void)
 	bool show_another_window = false;
 	ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
 
+	// Setting Transforms
+	glm::vec3 FirstGameObjectTransform = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 SecondGameObjectTransform = glm::vec3(1.0f, 0.0f, 0.0f);
+
 	while (!glfwWindowShouldClose(window))
 	{
+		// Clear Color Buffer and Depth Buffer
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		// Rotate
 		Model = glm::rotate(Model, glm::radians(1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		m_Shader.SetUniformMat4f("m_MVP", Projection * View * Model);
 
 		// Bind
 		VA.Bind();
@@ -198,9 +204,8 @@ int main(void)
 		ImGui::NewFrame();
 
 		if (show_demo_window)
-			ImGui::ShowDemoWindow(&show_demo_window);
+		ImGui::ShowDemoWindow(&show_demo_window);
 		{
-			static float f = 0.0f;
 			static int counter = 0;
 
 			ImGui::Begin("Hello, world!");
@@ -209,7 +214,8 @@ int main(void)
 			ImGui::Checkbox("Demo Window", &show_demo_window);
 			ImGui::Checkbox("Another Window", &show_another_window);
 
-			ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
+			ImGui::SliderFloat3("MoveFirstGameObject", &FirstGameObjectTransform.x, 0.0f, 1.0f);
+			ImGui::SliderFloat3("MoveSecondGameObject", &SecondGameObjectTransform.x, 0.0f, 1.0f);
 			ImGui::ColorEdit3("clear color", (float*)&clear_color);
 
 			if (ImGui::Button("Button"))
@@ -230,8 +236,21 @@ int main(void)
 			ImGui::End();
 		}
 
-		// Renderer
-		Renderer m_Renderer(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
+		// Rendering First GameObject
+		{
+			glm::mat4 Move = glm::translate(glm::mat4(1.0f), FirstGameObjectTransform);
+			m_Shader.SetUniformMat4f("m_MVP", Projection * View * Model * Move);
+			// Renderer
+			Renderer m_Renderer(GL_TRIANGLES, sizeof(Indices), GL_UNSIGNED_INT, nullptr);
+		}
+
+		// Rendering Second GameObject
+		{
+			glm::mat4 Move = glm::translate(glm::mat4(1.0f), SecondGameObjectTransform);
+			m_Shader.SetUniformMat4f("m_MVP", Projection * View * Model * Move);
+			// Renderer
+			Renderer m_Renderer(GL_TRIANGLES, sizeof(Indices), GL_UNSIGNED_INT, nullptr);
+		}
 
 		// Rendering ImGui
 		ImGui::Render();

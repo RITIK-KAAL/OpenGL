@@ -988,6 +988,9 @@
     <Image Include="Source\Textures\SM_Pillar_NN_01a_lambert2_Normal.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Source\Textures\TX_Wooden_Palette_NN_01a_ALB.PNG">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\External\glm\detail\func_common.inl">
