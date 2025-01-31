@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\External\glm\detail\glm.cpp" />
     <ClCompile Include="Source\External\imgui\imgui.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="Source\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Input.h" />
     <ClInclude Include="Source\External\glm\common.hpp" />
     <ClInclude Include="Source\External\glm\detail\compute_common.hpp" />
     <ClInclude Include="Source\External\glm\detail\compute_vector_decl.hpp" />

@@ -16,6 +16,7 @@
 #include "Shader.h"
 #include "Renderer.h"
 #include "Texture.h"
+#include "Input.h"
 
 #include <stdlib.h>
 #include <stddef.h>
@@ -135,6 +136,7 @@ int main(void)
 
 	// Depth Testing
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
 
 	// Vertex Buffer
 	VertexBuffer VB(vertices, sizeof(vertices));
@@ -192,7 +194,7 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// Rotate
-		Model = glm::rotate(Model, glm::radians(1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//Model = glm::rotate(Model, glm::radians(1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 		// Bind
 		VA.Bind();
@@ -246,10 +248,40 @@ int main(void)
 
 		// Rendering Second GameObject
 		{
-			glm::mat4 Move = glm::translate(glm::mat4(1.0f), SecondGameObjectTransform);
-			m_Shader.SetUniformMat4f("m_MVP", Projection * View * Model * Move);
-			// Renderer
-			Renderer m_Renderer(GL_TRIANGLES, sizeof(Indices), GL_UNSIGNED_INT, nullptr);
+			//glm::mat4 Move = glm::translate(glm::mat4(1.0f), SecondGameObjectTransform);
+			//m_Shader.SetUniformMat4f("m_MVP", Projection * View * Model * Move);
+			//// Renderer
+			//Renderer m_Renderer(GL_TRIANGLES, sizeof(Indices), GL_UNSIGNED_INT, nullptr);
+		}
+
+		// Input 
+		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		{
+			FirstGameObjectTransform.z -= 0.1f;
+
+			Input m_Input;
+			m_Input.MoveRight(glm::vec3(FirstGameObjectTransform.x, 0.0f, 0.0f), 10.0f);
+		}
+		else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		{
+			FirstGameObjectTransform.x -= 0.1f;
+
+			Input m_Input;
+			m_Input.MoveRight(glm::vec3(FirstGameObjectTransform.x, 0.0f, 0.0f), 10.0f);
+		}
+		else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		{
+			FirstGameObjectTransform.z += 0.1f;
+
+			Input m_Input;
+			m_Input.MoveRight(glm::vec3(FirstGameObjectTransform.x, 0.0f, 0.0f), 10.0f);
+		}
+		else if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		{
+			FirstGameObjectTransform.x += 0.1f;
+
+			Input m_Input;
+			m_Input.MoveRight(glm::vec3(FirstGameObjectTransform.x, 0.0f, 0.0f), 10.0f);
 		}
 
 		// Rendering ImGui
