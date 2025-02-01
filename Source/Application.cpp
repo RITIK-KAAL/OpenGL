@@ -117,7 +117,7 @@ int main(void)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLFWwindow* window = glfwCreateWindow(640, 480, "OpenGL", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(1920, 1080, "OpenGL", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -150,21 +150,20 @@ int main(void)
 	m_Shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.4f, 0.5f);
 
 	// MVP
-	glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f);
+	glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 1920.0f / 1080.0f, 0.1f, 100.0f);
 	m_Shader.SetUniformMat4f("m_MVP", Projection);
 
-	glm::mat4 View = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -5.0f));
+	glm::mat4 View = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -10.0f));
 	m_Shader.SetUniformMat4f("m_MVP", Projection * View);
 
 	glm::mat4 Model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 
+	// Setting Textures
+	Texture m_Texture0("Source/Textures/TX_Wooden_Palette_NN_01a_ALB.png");
+	Texture m_Texture1("Source/Textures/SM_Pillar_NN_01a_lambert2_Normal.png");
+
 	// Vertex Array
 	VertexArray VA;
-
-	// Texture
-	Texture m_Texture("Source/Textures/TX_Wooden_Palette_NN_01a_ALB.png");
-	m_Texture.Bind(0);
-	m_Shader.SetUniform1i("u_Texture", 0);
 
 	// Vertex Buffer Layout
 	VertexBufferLayout VBL;
@@ -234,12 +233,15 @@ int main(void)
 			ImGui::Begin("Another Window", &show_another_window);
 			ImGui::Text("Hello from another window!");
 			if (ImGui::Button("Close Me"))
-				show_another_window = false;
+			show_another_window = false;
 			ImGui::End();
 		}
 
 		// Rendering First GameObject
 		{
+			m_Texture0.Bind(0);
+			m_Shader.SetUniform1i("u_Texture", 0);
+
 			glm::mat4 Move = glm::translate(glm::mat4(1.0f), FirstGameObjectTransform);
 			m_Shader.SetUniformMat4f("m_MVP", Projection * View * Model * Move);
 			// Renderer
@@ -248,40 +250,47 @@ int main(void)
 
 		// Rendering Second GameObject
 		{
-			//glm::mat4 Move = glm::translate(glm::mat4(1.0f), SecondGameObjectTransform);
-			//m_Shader.SetUniformMat4f("m_MVP", Projection * View * Model * Move);
-			//// Renderer
-			//Renderer m_Renderer(GL_TRIANGLES, sizeof(Indices), GL_UNSIGNED_INT, nullptr);
+			m_Texture1.Bind(0);
+			m_Shader.SetUniform1i("u_Texture", 1);
+
+			glm::mat4 Move = glm::translate(glm::mat4(1.0f), SecondGameObjectTransform);
+			m_Shader.SetUniformMat4f("m_MVP", Projection * View * Model * Move);
+			// Renderer
+			Renderer m_Renderer(GL_TRIANGLES, sizeof(Indices), GL_UNSIGNED_INT, nullptr);
 		}
 
 		// Input 
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		{
-			FirstGameObjectTransform.z -= 0.1f;
-
 			Input m_Input;
-			m_Input.MoveRight(glm::vec3(FirstGameObjectTransform.x, 0.0f, 0.0f), 10.0f);
+			m_Input.MoveRight(FirstGameObjectTransform, -0.1f, "Z");
+
+			glm::vec3 CameraPos = FirstGameObjectTransform - glm::vec3(0.0f, 0.0f, -10.0f);
+			View = glm::lookAt(CameraPos, FirstGameObjectTransform, glm::vec3(0.0f, 1.0f, 0.0f));
 		}
 		else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 		{
-			FirstGameObjectTransform.x -= 0.1f;
-
 			Input m_Input;
-			m_Input.MoveRight(glm::vec3(FirstGameObjectTransform.x, 0.0f, 0.0f), 10.0f);
+			m_Input.MoveRight(FirstGameObjectTransform, -0.1f, "X");
+
+			glm::vec3 CameraPos = FirstGameObjectTransform - glm::vec3(0.0f, 0.0f, -10.0f);
+			View = glm::lookAt(CameraPos, FirstGameObjectTransform, glm::vec3(0.0f, 1.0f, 0.0f));
 		}
 		else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 		{
-			FirstGameObjectTransform.z += 0.1f;
-
 			Input m_Input;
-			m_Input.MoveRight(glm::vec3(FirstGameObjectTransform.x, 0.0f, 0.0f), 10.0f);
+			m_Input.MoveRight(FirstGameObjectTransform, 0.1f, "Z");
+
+			glm::vec3 CameraPos = FirstGameObjectTransform - glm::vec3(0.0f, 0.0f, -10.0f);
+			View = glm::lookAt(CameraPos, FirstGameObjectTransform, glm::vec3(0.0f, 1.0f, 0.0f));
 		}
 		else if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		{
-			FirstGameObjectTransform.x += 0.1f;
-
 			Input m_Input;
-			m_Input.MoveRight(glm::vec3(FirstGameObjectTransform.x, 0.0f, 0.0f), 10.0f);
+			m_Input.MoveRight(FirstGameObjectTransform, 0.1f, "X");
+
+			glm::vec3 CameraPos = FirstGameObjectTransform - glm::vec3(0.0f, 0.0f, -10.0f);
+			View = glm::lookAt(CameraPos, FirstGameObjectTransform, glm::vec3(0.0f, 1.0f, 0.0f));
 		}
 
 		// Rendering ImGui
@@ -297,7 +306,8 @@ int main(void)
 	IB.UnBind();
 	VA.UnBind();
 	m_Shader.UnBind();
-	m_Texture.UnBind();
+	m_Texture0.UnBind();
+	m_Texture1.UnBind();
 
 	// Destroy ImGui
 	ImGui_ImplOpenGL3_Shutdown();
